@@ -13,14 +13,14 @@
  */
 class Database{
 
-    // specify your own database credentials
+    // credenciais do banco
     private $host = "mysql";
     private $db_name = "livraria";
     private $username = "root";
     private $password = "123.456";
     public $conn;
  
-    // get the database connection
+    // criar conexão com a base
     public function getConnection(){
  
         $this->conn = null;

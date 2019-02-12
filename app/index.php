@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
         echo json_encode($book_arr, JSON_PRETTY_PRINT);
     } else {
         http_response_code(404);
-        // tell the user product does not exist
+        // Se não encontrar no banco
         echo json_encode(array("message" => "Livro não encontrado."), JSON_PRETTY_PRINT);
     }
 /*************************************/
@@ -45,7 +45,6 @@ if (isset($_GET['id'])) {
     if ($html) {
         $books_url = array();
         
-
         foreach ($html->find('h2') as $el) {
             $h2 = $el;
             $titles[] = $h2->plaintext;
@@ -53,7 +52,7 @@ if (isset($_GET['id'])) {
                 $langs[] = $el->plaintext;
                 if ('h2' != $el->tag)
                     break;
-                // do something
+                
             }
             while ($a = $el->next_sibling()) {
                 $ib = substr(strstr($a->href, 'dp/'), 3);
@@ -61,27 +60,26 @@ if (isset($_GET['id'])) {
                 $isbns[] = $isbn;
                 if ('h2' != $el->tag)
                     break;
-                // do something
+                
             }
             while ($des = $a->next_sibling()) {
                 $descriptions[] = $des->plaintext;
                 if ('h2' != $el->tag)
                     break;
-                // do something
+                
             }
         }
         $books_url["numberBooks"] = count($titles);
         $books_url["books"] = array();
         $books = array();
         for ($i = 0; $i < count($titles); $i++) {
-
             $books[$i] = array("id" => $i, "title" => $titles[$i], "descriptions" => trim($descriptions[$i]), "isbns" => $isbns[$i], "leng" => $langs[$i]);
             array_push($books_url["books"], $books);
         }
         echo json_encode($books_url, JSON_PRETTY_PRINT);
     } else {
         http_response_code(404);
-        // tell the user product does not exist
+        // caso não encontre a url
         echo json_encode(array("message" => "Url Invalida."), JSON_PRETTY_PRINT);
     }
     
@@ -90,7 +88,6 @@ if (isset($_GET['id'])) {
 /*************************************/        
 } else if (!isset($_GET['id']) && !isset($_GET['url']) && $num > 0) {
 
-    // products array
     $books_arr = array();
     $books_arr["books"] = array();
 
@@ -114,8 +111,8 @@ if (isset($_GET['id'])) {
 } else {
 
     http_response_code(404);
-
     echo json_encode(
+        // se não encontrar nada
             array("message" => "Nenhum livro encritrado.")
     );
 }

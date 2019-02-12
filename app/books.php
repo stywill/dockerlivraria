@@ -18,6 +18,7 @@ class Books {
     public function __construct($db) {
         $this->conn = $db;
     }
+    /* Ler todos os registros da base */
     function ler() {
 
         $query = "SELECT * FROM " . $this->table_name . " ORDER BY id";
@@ -28,7 +29,7 @@ class Books {
 
         return $stmt;
     }
-    
+    /* Ler apenas o registro recuperado pelo id passado na url */
     function lerUm() {
 
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = ? ";
