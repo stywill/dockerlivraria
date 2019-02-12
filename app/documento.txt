@@ -1,0 +1,17 @@
+Sistem teste Livraria
+
+Esse sistema é constuido em php5.6 e usa base mysql5.7.
+
+1) O sistema está configurado e compativel com docker.
+
+2) O arquivo "books.php" tem a classe que comtrola a tabela books.
+Essa classe tem 2 metodos "ler" que recupara todos registros da base e 
+"lerUm" que recupera o registro buscado por id.
+
+3) Assim que acessar a url o sistema deve carregar todos os registros da base
+
+4) Passando na url o parametro ex: "?id=1" o sistema deve retornar o registro com o 
+id correspondente.
+
+5) Passando o parametro ex: "?url=https://kotlinlang.org/docs/books.html" o sistema deve 
+retornar todos os registros da pagina.
